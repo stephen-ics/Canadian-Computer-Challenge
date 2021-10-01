@@ -1,0 +1,51 @@
+//CCC Senior Question 1, 2007
+import java.util.Scanner;
+import java.util.Date;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+    Scanner inputInt = new Scanner(System.in);
+    Scanner inputString = new Scanner(System.in);
+    int n = inputInt.nextInt();
+    String string = "";
+    String dates = "";
+    String[] stringArray = new String[n];
+    String[] stringDatesArray = new String[3];
+    Date[] birthdayArray = new Date[n];
+
+    for (int i=0; i<n; i++)
+    {
+        string = inputString.nextLine();
+        stringArray[i] = string;
+    }
+
+    for (int i=0; i<stringArray.length; i++)
+    {
+        dates = stringArray[i];
+        stringDatesArray = dates.split(" ");
+        Date birthday = new Date(Integer.parseInt(stringDatesArray[0]), Integer.parseInt(stringDatesArray[1]), Integer.parseInt(stringDatesArray[2]));
+        birthdayArray[i] = birthday;
+    }
+
+    Date electionDate = new Date(1989, 2, 27);
+
+    for (int i=0; i<n; i++)
+    {
+        if (birthdayArray[i].after(electionDate))
+        {
+            System.out.println("No");
+        }
+        else if (birthdayArray[i].before(electionDate))
+        {
+            System.out.println("Yes");
+        }
+        else 
+        {
+            System.out.println("Yes");
+        }
+    }
+
+    }
+}
