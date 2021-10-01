@@ -1,0 +1,68 @@
+//CCC Senior Question 3, 2012
+
+package sample;
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.ArrayList;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner intScanner = new Scanner(System.in);
+
+        int n = intScanner.nextInt();
+
+        int[][] acidity = new int[n][2];
+
+        for (int i=0; i<n; i++)
+        {
+            acidity[i][0] = intScanner.nextInt();
+        }
+
+        for (int i=0; i<acidity.length; i++)
+        {
+            for (int j=0; j<acidity.length; j++)
+            {
+                if (acidity[i][0] == acidity[j][0])
+                {
+                    acidity[i][1]++;
+                    break;
+                }
+            }
+        }
+
+        ArrayList<Integer> mostFrequent = new ArrayList<Integer>();
+        for (int i=0; i<acidity.length; i++)
+        {
+            for (int j=0; j<2; j++)
+            {
+                if (acidity[i][1] >  acidity[j][1])
+                {
+                    mostFrequent.add(acidity[i][0]);
+                }
+                else if (acidity[i][1] ==  acidity[j][1])
+                {
+                    mostFrequent.add(acidity[i][0]);
+                }
+            }
+        }
+
+        int[] sums = new int[mostFrequent.size()*mostFrequent.size()];
+        int x = 0;
+
+        for (int i=0; i<mostFrequent.size(); i++)
+        {
+            for (int j=0; j<mostFrequent.size(); j++)
+            {
+                sums[x] = Math.abs(mostFrequent.get(i) - mostFrequent.get(j));
+                x++;
+            }
+        }
+
+        Arrays.sort(sums);
+
+        int difference = Math.abs(sums[0] + sums[sums.length-1]);
+        System.out.println(difference);
+    }
+}
