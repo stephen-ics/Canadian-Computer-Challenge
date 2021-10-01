@@ -1,0 +1,153 @@
+//CCC Senior Question 1, 2005
+import java.util.Scanner;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+    Scanner inputString = new Scanner(System.in);
+    Scanner inputInt = new Scanner(System.in);
+    int n = inputInt.nextInt();
+    String uncodedNumber = "";
+    String codedNumber = "";
+    String[] uncodedNumberArray = new String[40];
+for (int j=0; j<n; j++)
+    {
+    uncodedNumber = inputString.nextLine();
+    uncodedNumberArray = uncodedNumber.split("");
+
+    for (int i=0; i<uncodedNumberArray.length; i++)
+    {
+        if (uncodedNumberArray[i].equals("A"))
+        {
+            uncodedNumberArray[i] = "2";
+        }
+
+        if (uncodedNumberArray[i].equals("B"))
+        {
+            uncodedNumberArray[i] = "2";
+        }
+
+        if (uncodedNumberArray[i].equals("C"))
+        {
+            uncodedNumberArray[i] = "2";
+        }
+
+        if (uncodedNumberArray[i].equals("D"))
+        {
+            uncodedNumberArray[i] = "3";
+        }
+
+        if (uncodedNumberArray[i].equals("E"))
+        {
+            uncodedNumberArray[i] = "3";
+        }
+if (uncodedNumberArray[i].equals("F"))
+        {
+            uncodedNumberArray[i] = "3";
+        }
+
+        if (uncodedNumberArray[i].equals("G"))
+        {
+            uncodedNumberArray[i] = "4";
+        }
+
+        if (uncodedNumberArray[i].equals("H"))
+        {
+            uncodedNumberArray[i] = "4";
+        }
+
+        if (uncodedNumberArray[i].equals("I"))
+        {
+            uncodedNumberArray[i] = "4";
+        }
+
+        if (uncodedNumberArray[i].equals("J"))
+        {
+            uncodedNumberArray[i] = "5";
+        }
+
+        if (uncodedNumberArray[i].equals("K"))
+        {
+            uncodedNumberArray[i] = "5";
+        }
+if (uncodedNumberArray[i].equals("L"))
+        {
+            uncodedNumberArray[i] = "5";
+        }
+
+        if (uncodedNumberArray[i].equals("M"))
+        {
+            uncodedNumberArray[i] = "6";
+        }
+
+        if (uncodedNumberArray[i].equals("N"))
+        {
+            uncodedNumberArray[i] = "6";
+        }
+
+        if (uncodedNumberArray[i].equals("O"))
+        {
+            uncodedNumberArray[i] = "6";
+        }
+
+        if (uncodedNumberArray[i].equals("P"))
+        {
+            uncodedNumberArray[i] = "7";
+        }
+if (uncodedNumberArray[i].equals("Q"))
+        {
+            uncodedNumberArray[i] = "7";
+        }
+
+        if (uncodedNumberArray[i].equals("R"))
+        {
+            uncodedNumberArray[i] = "7";
+        }
+
+        if (uncodedNumberArray[i].equals("S"))
+        {
+            uncodedNumberArray[i] = "7";
+        }
+
+        if (uncodedNumberArray[i].equals("T"))
+        {
+            uncodedNumberArray[i] = "8";
+        }
+
+        if (uncodedNumberArray[i].equals("U"))
+        {
+            uncodedNumberArray[i] = "8";
+        }
+
+        if (uncodedNumberArray[i].equals("V"))
+        {
+            uncodedNumberArray[i] = "8";
+        }
+
+        if (uncodedNumberArray[i].equals("W"))
+        {
+            uncodedNumberArray[i] = "9";
+        }
+
+        if (uncodedNumberArray[i].equals("X"))
+        {
+            uncodedNumberArray[i] = "9";
+        }
+
+        if (uncodedNumberArray[i].equals("Y"))
+        {
+            uncodedNumberArray[i] = "9";
+        }
+
+        if (uncodedNumberArray[i].equals("Z"))
+        {
+            uncodedNumberArray[i] = "9";
+        }
+    }
+for (int k=0; k<uncodedNumberArray.length; k++)
+    codedNumber += uncodedNumberArray[k];
+    }
+  System.out.println(codedNumber);
+
+    }
