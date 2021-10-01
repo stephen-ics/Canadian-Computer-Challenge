@@ -1,0 +1,61 @@
+//CCC Senior Question 1, 2009
+import java.util.Scanner;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+    Scanner input = new Scanner(System.in);
+    int[] rangeArray = new int[2];
+
+    for (int i=0; i<2; i++)
+    {
+        rangeArray[i] = input.nextInt();
+    }
+
+    int rounds = (rangeArray[1] - rangeArray[0]) + 1;
+    int checkedNumber = rangeArray[0];
+    int counter = 0;
+    int answer = 0;
+    double afterSquareRoot = 0;
+
+    for (int i=0; i<rounds; i++)
+    {
+        afterSquareRoot = Math.sqrt(checkedNumber);
+        if ((afterSquareRoot == (int)afterSquareRoot) && (perfectCube(checkedNumber)))
+        {
+
+            counter++;
+            checkedNumber++;
+        }
+        else
+        {
+            checkedNumber++;
+        }
+
+        answer = counter;
+    }
+        System.out.println(answer);
+
+    }
+
+    public static boolean perfectCube(int checkedNumber)
+    {
+        int currentNumber = 0;
+        for (int i=0; i<=checkedNumber; i++)
+        {
+            currentNumber = iii;
+
+            if (currentNumber == checkedNumber)
+            {
+                return true;
+            }
+            else
+            {
+
+            }
+
+        }
+        return false;
+    }
+}
