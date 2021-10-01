@@ -1,0 +1,122 @@
+//CCC Senior Question 1, 2006
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+    Scanner inputInt = new Scanner(System.in);
+    Scanner inputString = new Scanner(System.in);
+
+    String momString = inputString.nextLine();
+    String dadString = inputString.nextLine();
+    int n = inputInt.nextInt();
+    String[] momArray = new String[10];
+    String[] dadArray = new String[10];
+    String string = "";
+    String[] stringArray = new String[n];
+
+    momArray = momString.split("");
+    dadArray = dadString.split("");
+
+    int index = 0;
+    String[] requirementsArray = new String[5];
+     for (int i=0; i<(momArray.length/2); i++)
+    {
+        if (isDominant(index, momArray, dadArray))
+        {
+            requirementsArray[i] = momArray[index].toUpperCase();
+        }
+        else if (isLower(index, momArray, dadArray))
+        {
+            requirementsArray[i] = momArray[index].toLowerCase();
+        }
+        else
+        {
+            requirementsArray[i] = "both";
+        }
+        index += 2;
+    }
+for (int i=0; i<requirementsArray.length; i++)
+    {
+    System.out.println(requirementsArray[i]);
+    }
+
+
+    String babyString = "";
+    String[] babyArray = new String[5];
+    int counter = 0;
+    int k = 0;
+    boolean noResult = true;
+for (int i=0; i<stringArray.length; i++)
+    {
+        string = inputString.nextLine();
+        stringArray[i] = string;
+        babyString = stringArray[i];
+        babyArray = babyString.split("");
+        noResult = true;
+        k = 0;
+        counter = 0;
+        while (noResult)
+        {
+            if (requirementsArray[k].equals("both"))
+            {
+                counter++;
+                if (counter == requirementsArray.length)
+                {
+                    System.out.println("Possible baby.");
+                    noResult = false;
+                }
+            }
+            else 
+            {
+                if (requirementsArray[k].equals(babyArray[k]))
+                {
+                    counter++;
+                    if (counter == requirementsArray.length)
+                    {
+                        System.out.println("Possible baby.");
+                        noResult = false;
+                    }
+                }
+
+                else 
+                {
+                    System.out.println("Not their baby!");
+                    noResult = false;
+                }
+            }
+            k++;
+        }
+    }
+
+    }
+public static boolean isDominant(int index, String[] momArray, String[] dadArray)
+    {
+
+        char character1 = (momArray[index].toCharArray())[0];
+        char character2 = (momArray[index+1].toCharArray())[0];
+        char character3 = (dadArray[index].toCharArray())[0];
+        char character4 = (dadArray[index+1].toCharArray())[0];
+
+        if (((Character.isUpperCase(character1)) && (Character.isUpperCase(character2))) || ((Character.isUpperCase(character3)) && (Character.isUpperCase(character4))))
+        {
+            return true;
+        }
+        return false;
+    }
+    public static boolean isLower(int index, String[] momArray, String[] dadArray)
+    {
+        char character1 = (momArray[index].toCharArray())[0];
+        char character2 = (momArray[index+1].toCharArray())[0];
+        char character3 = (dadArray[index].toCharArray())[0];
+        char character4 = (dadArray[index+1].toCharArray())[0];
+
+        if (((Character.isLowerCase(character1)) && (Character.isLowerCase(character2)) && (Character.isLowerCase(character3)) && (Character.isLowerCase(character4))))
+        {
+            return true;
+        }
+        return false;
+    }
+}
