@@ -1,0 +1,75 @@
+//CCC Senior Question 1, 2003
+import java.util.Scanner;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+    Scanner inputInt = new Scanner(System.in);
+    int n = 0;
+    int currentSquare = 0;
+
+    boolean notWin = true;
+
+    while (notWin)
+    {
+    System.out.println("Enter sum of dice:");
+    n = inputInt.nextInt();
+    if ((n < 2) || (n > 12))
+    {
+        notWin = false;
+        System.out.println("Don't cheat!");
+    }
+
+    currentSquare += n;
+    System.out.println("you are now on square " + currentSquare);
+
+
+    //ladders
+    if (currentSquare == 9)
+    {
+        currentSquare = 34;
+        System.out.println("you climbed to square " + currentSquare + "!");
+    }
+
+    if (currentSquare == 40)
+    {
+        currentSquare = 64;
+        System.out.println("you climbed to square " + currentSquare + "!");
+    }
+
+    if (currentSquare == 67)
+    {
+        currentSquare = 86;
+        System.out.println("you climbed to square " + currentSquare + "!");
+    }
+//snakes
+        if (currentSquare == 54)
+    {
+        currentSquare = 19;
+        System.out.println("you slid to square " + currentSquare + "!");
+    }
+
+    if (currentSquare == 90)
+    {
+        currentSquare = 48;
+        System.out.println("you slid to square " + currentSquare + "!");
+    }
+
+    if (currentSquare == 99)
+    {
+        currentSquare = 77;
+        System.out.println("you slid to square " + currentSquare + "!");
+    }
+
+    //Winner!
+    if (currentSquare == 100)
+    {
+        System.out.println("You win!");
+        notWin = false;
+    }
+
+    }
+
+    }
+}
