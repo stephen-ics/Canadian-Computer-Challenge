@@ -1,0 +1,64 @@
+//CCC Senior Question 1, 2013
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        String n = input.nextLine();
+
+        int input0 = Integer.parseInt(n);
+            int output = 0;
+        boolean notDistinct2 = true;
+
+        while (notDistinct2)
+        {
+            input0++;
+            String inputString = Integer.toString(input0);
+            String[] stringArray = inputString.split("");
+            int counter = input0;
+            int size = stringArray.length;
+            int[] intArray = new int[size];
+
+
+            boolean notDistinct = true;
+            int counter2 = 0;
+            int i = 0;
+
+            for(int y=0; y<size; y++)
+            {
+                intArray[y] = Integer.parseInt(stringArray[y]);
+            }
+            Arrays.sort(intArray);
+
+            while (notDistinct) //play until all integers are distinct
+            {
+            System.out.println(intArray[0] + " " + intArray[1] +  " " + intArray[2] + " " + intArray[3]);
+                if ((i < intArray.length - 1) && (intArray[i] != intArray[i+1])) //if the integers are not the same
+                {
+                    i++;
+                    counter2++;
+
+                       if (counter2 == intArray.length -1) //if all integers are distinct stop running and output the counter
+                    {
+                        notDistinct = false;
+                        notDistinct2 = false;
+                        output = counter;
+                    }
+                }
+                else //the digits are the same (reset array)
+                {
+                    notDistinct = false;
+                    counter2 = 0;
+                    i = 0;
+                }
+
+            }
+        }
+
+    System.out.println(output);
+
+    }
+}
