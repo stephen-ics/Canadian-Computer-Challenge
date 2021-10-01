@@ -1,0 +1,20 @@
+//CCC Senior Question 1, 2012
+import java.util.Scanner;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+    Scanner input = new Scanner(System.in);
+    int n = input.nextInt();
+    int a = n-1;
+    int b = n-2;
+    int c = n-3;
+    int answer = 0;
+
+    answer = abc/6;
+    System.out.println(answer);
+
+
+    }
+}
