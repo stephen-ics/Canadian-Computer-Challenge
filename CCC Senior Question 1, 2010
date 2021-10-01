@@ -1,0 +1,49 @@
+//CCC Senior Question 1, 2010
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+    Scanner inputInt = new Scanner(System.in);
+    Scanner inputString = new Scanner(System.in);
+    int n = inputInt.nextInt();
+    String computerString = "";
+    String[] computerStringArray = new String[4];
+    int R = 0;
+    int S = 0;
+    int D = 0;
+    int computerSum = 0;
+    int[] computerSumArray = new int[n];
+    int currentLargest = 0;
+    int currentSecondLargest = 0;
+    String[] currentLargestArray = new String[4];
+    String[] currentSecondLargestArray = new String[4];
+
+    for (int i=0; i<n; i++)
+    {
+        computerString = inputString.nextLine();
+        computerStringArray = computerString.split(" ");
+
+        R = Integer.parseInt(computerStringArray[1]);
+        S = Integer.parseInt(computerStringArray[2]);
+        D = Integer.parseInt(computerStringArray[3]);
+
+        computerSum = 2R + 3S + D;
+
+        if (computerSum > currentLargest)
+        {
+            currentSecondLargest = currentLargest;
+            currentLargest = computerSum;
+            currentSecondLargestArray = currentLargestArray;
+            currentLargestArray = computerStringArray;
+        }
+    }
+
+
+    System.out.println(currentLargestArray[0]);
+    System.out.println(currentSecondLargestArray[0]);
+
+    }
+}
