@@ -1,0 +1,39 @@
+//CCC Senior Question 1, 2008
+import java.util.Scanner;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+    Scanner inputString = new Scanner(System.in);
+    String cityString = "";
+    String[] cityStringArray = new String[2];
+    int temperature = 0;
+    int currentLowest = 0;
+    String currentLowestCity = "";
+
+    boolean notWaterloo = true;
+
+        while (notWaterloo)
+        {
+            cityString = inputString.nextLine();
+            cityStringArray = cityString.split(" ");
+
+            temperature = Integer.parseInt(cityStringArray[1]);
+
+            if (temperature < currentLowest)
+            {
+                currentLowest = temperature;
+                currentLowestCity = cityStringArray[0];
+            }
+
+            if (cityStringArray[0].equals("Waterloo"))
+            {
+                System.out.println(currentLowestCity);
+                notWaterloo = false;
+            }
+
+        }
+
+    }
+}
