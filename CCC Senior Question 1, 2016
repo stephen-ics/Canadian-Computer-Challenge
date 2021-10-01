@@ -1,0 +1,53 @@
+//CCC Senior Question 1, 2016
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+        Scanner inputString = new Scanner(System.in);
+
+        String word = inputString.nextLine();
+        String[] stringArray = word.split("");
+
+        String word2 = inputString.nextLine();
+        String[] stringArray2 = word2.split("");
+
+        Arrays.sort(stringArray);
+        Arrays.sort(stringArray2);
+
+        int n = 0;
+        for(int i=0; i<stringArray2.length; i++)
+        {
+            if (stringArray2[i].equals("*"))
+            {
+                n++;
+            }
+        }
+
+        for(int i=0; i<n; i++)
+        {
+            stringArray[i] = "A";
+            stringArray2[i] = "A";
+        }
+
+        int counter = 0;
+        for(int i=0; i<stringArray.length; i++)
+        {
+            if (stringArray[i].equals(stringArray2[i]))
+            {
+                counter++;
+            }
+        }
+
+        if (counter == stringArray.length)
+        {
+            System.out.println("N");
+        }
+        else
+        {
+            System.out.println("A");
+        }
+    }
+}
