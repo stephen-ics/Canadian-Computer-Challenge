@@ -1,0 +1,92 @@
+//CCC Senior Question 3, 2014
+package sample;
+import java.util.Scanner;
+import java.util.ArrayList;
+public class Main {
+
+    public static void main(String[] args) {
+
+        Check check = new Check();
+
+        Scanner intScanner = new Scanner(System.in);
+
+        int t = intScanner.nextInt();
+        int n;
+        int[][] cars = new int[t][2000];
+
+        for (int i=0; i<t; i++)
+        {
+            n = intScanner.nextInt();
+            for (int j=0; j<n; j++)
+            {
+                cars[i][j] = intScanner.nextInt();
+            }
+        }
+
+        int[] lengths = new int[t];
+        for (int i=0; i<t; i++)
+        {
+            int length = 0;
+
+                for (int j=0; j<cars[i].length; j++)
+                {
+                    if (cars[i][j] != 0)
+                    {
+                        length++;
+                    }
+            }
+
+            lengths[i] = length;
+        }
+boolean yum = true;
+
+        for (int i=0; i<t; i++)
+        {
+            int taken = 1;
+            ArrayList<Integer> branch = new ArrayList<Integer>();
+            for (int j=0; j<lengths[i]; j++)
+            {
+                //mountain top
+                if (taken == lengths[i])
+                {
+                    yum = true;
+                    break;
+                }
+
+                else if (cars[i][lengths[i]-j-1] == taken)
+                {
+                    taken++;
+                }
+
+                else
+                {
+                    branch.add(cars[i][lengths[i]-j-1]);
+                }
+
+                //branch management
+
+                boolean isBigger = check.isBigger(branch, cars[i][lengths[i]-j-1]);
+
+                if (isBigger)
+                {
+                    yum = false;
+                    break;
+                }
+                else if ((branch.size() != 0) && (branch.get(branch.size()-1) == taken))
+                {
+                    taken++;
+                    branch.remove(branch.get(branch.size()-1));
+                }
+            }
+
+            if (yum)
+            {
+                System.out.println("Y");
+            }
+            else
+            {
+                System.out.println("N");
+            }
+        }
+    }
+}
