@@ -1,0 +1,58 @@
+//CCC Senior Question 1, 2004
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+    Scanner inputInt = new Scanner(System.in);
+    Scanner inputString = new Scanner(System.in);
+    int n = inputInt.nextInt();
+    String s = "";
+    String[] stringArray = new String[3];
+    boolean inProcess = true;
+    int counter = 0;
+    int k = 0;
+
+    for (int i=0; i<n; i++)
+    {
+        for (int j=0; j<stringArray.length; j++)
+        {
+            s = inputString.nextLine();
+            stringArray[j] = s;
+        }
+            inProcess = true;
+            k = 0;
+            counter = 0;
+
+            while (inProcess)
+            {
+                if (stringArray[k].length() > n)
+                {
+                    System.out.println(stringArray[k].length());
+                    System.out.println("Not fix-free");
+                    k++;
+                    inProcess = false;
+                }
+                else
+                {
+                    System.out.println(stringArray[k]);
+                    System.out.println(stringArray[k].length());
+                    k++;
+                    counter++;
+                    if (counter == 3)
+                    {
+                        System.out.println("Fix-free");
+                        inProcess = false;
+                    }
+
+                }
+
+        }
+
+
+    }
+
+    }
+}
