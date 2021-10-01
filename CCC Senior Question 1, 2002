@@ -1,0 +1,53 @@
+//CCC Senior Question 1, 2002
+import java.util.Scanner;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+    Scanner inputInt = new Scanner(System.in);
+    int pink = inputInt.nextInt();
+    int green = inputInt.nextInt();
+    int red = inputInt.nextInt();
+    int orange = inputInt.nextInt();
+    int pinkConstant = pink;
+    int greenConstant = green;
+    int redConstant = red;
+    int orangeConstant = orange;
+    int goal = inputInt.nextInt();
+    int counter = 0;
+    boolean inProcess = true;
+
+    int n = goal/pink;
+
+    for (int i=0; i<n+1; i++)
+    {
+        pink = pinkConstanti;
+
+        for (int j=0; j<n+1; j++)
+        {
+            green = greenConstantj;
+
+            for (int k=0; k<n+1; k++)
+            {
+                red = redConstantk;
+
+                for (int l=0; l<n+1; l++)
+                {
+                    orange = orangeConstantl;
+
+                    if ((pink + green + red + orange) == goal)
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    System.out.println("Combinations are " + counter);
+
+    }
+}
