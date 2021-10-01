@@ -1,0 +1,36 @@
+//CCC Senior Question 1, 2011
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+    Scanner input = new Scanner(System.in);
+    String text = input.nextLine();
+    String[] textArray = text.split("");
+    int language = 0;
+
+    for (int i=0; i<textArray.length; i++)
+    {
+        if (textArray[i].contains("t"))
+        {
+            language++;
+        }
+        if (textArray[i].contains("s"))
+        {
+            language--;
+        }
+    }
+
+    if (language > 0)
+    {
+        System.out.println("English");
+    }
+    else
+    {
+        System.out.println("French");
+    }
+
+    }
+}
