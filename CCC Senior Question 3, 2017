@@ -1,0 +1,72 @@
+package sample;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner intScanner = new Scanner(System.in);
+        Scanner strScanner = new Scanner(System.in);
+
+        int n = intScanner.nextInt();
+        String lengthsLine = strScanner.nextLine();
+
+        int[] lengthsArray = new int[n];
+        String[] strLengthsArray;
+
+        strLengthsArray = lengthsLine.split(" ");
+
+        for (int i=0; i<n; i++)
+        {
+            lengthsArray[i] = Integer.parseInt(strLengthsArray[i]);
+        }
+
+        ArrayList<Integer> sumsList = new ArrayList<Integer>();
+
+        for (int i=0; i<n; i++)
+        {
+            for (int j=0; j<n; j++)
+            {
+                if (i < j)
+                {
+                    int sums = lengthsArray[i] + lengthsArray[j];
+                    sumsList.add(sums);
+                }
+            }
+        }
+
+        for (int i=0; i<sumsList.size(); i++)
+        {
+            System.out.print(sumsList.get(i) + " ");
+        }
+
+        int sameSums = 1;
+        int finalSums = 1;
+        int numberOfWays = 0;
+
+        for (int i=0; i<sumsList.size(); i++)
+        {
+            for (int j=0; j<sumsList.size(); j++)
+            {
+                if ((sumsList.get(i).intValue() == sumsList.get(j).intValue()) && (i<j))
+                {
+                    sameSums++;
+                }
+            }
+
+            if (sameSums > finalSums)
+            {
+                finalSums = sameSums;
+                numberOfWays = 1;
+            }
+            else if (sameSums == finalSums)
+            {
+                numberOfWays++;
+            }
+            sameSums = 1;
+        }
+        System.out.println();
+        System.out.print(finalSums + " " + numberOfWays);
+    }
+}
