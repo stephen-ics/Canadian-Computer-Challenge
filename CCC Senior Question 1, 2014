@@ -1,0 +1,58 @@
+//CCC Senior Question 1, 2014
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt(); //amount of friends
+        int m = input.nextInt(); //amount of rounds
+
+        ArrayList<Integer> peopleArray = new ArrayList<Integer>();
+        ArrayList<Integer> multiplesArray = new ArrayList<Integer>();
+        Collections.sort(peopleArray);
+
+        int k = 1;
+        for(int i = 0; i < n; i++)
+        {
+            peopleArray.add(k);
+            k++;
+        }
+
+          for(int i = 0; i < m; i++)
+        {
+            multiplesArray.add(input.nextInt());
+        }
+
+        int counter = 1;
+        int counter2 = 0;
+        int peopleLeft = n;
+        for(int i = 0; i < m; i++)
+        {
+            peopleLeft = peopleArray.size();
+            counter2 = 0;
+            for (int j = 0; j < peopleLeft; j++)
+            {
+                if(counter == multiplesArray.get(i))
+                {
+                    peopleArray.remove(j-counter2);
+                    counter = 1;
+                    counter2 ++;
+                }
+                else
+                {
+                    counter++;
+                }
+            }
+        }
+
+        for(int i = 0; i < peopleArray.size(); i++)
+        {
+            System.out.println(peopleArray.get(i));
+        }
+    }
+}
