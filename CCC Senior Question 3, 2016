@@ -1,0 +1,196 @@
+package sample;
+import java.util.Scanner;
+
+**Main Class**
+public class Main{
+    public static void main(String[] args) {
+
+        Routes phoRoutes = new Routes();
+
+        Scanner strScanner = new Scanner(System.in);
+
+        String nm = strScanner.nextLine();
+        String[] strNm = nm.split(" ");
+
+        int n = Integer.parseInt(strNm[0]);
+        int m = Integer.parseInt(strNm[1]);
+        String phoRestaurantsLine = strScanner.nextLine();
+
+        String[] strPhoRestaurants = phoRestaurantsLine.split(" ");
+        int[] phoRestaurants = new int[m];
+
+        for (int i=0; i<m; i++)
+        {
+            phoRestaurants[i] = Integer.parseInt(strPhoRestaurants[i]);
+        }
+
+        int[][] roads = new int[n-1][2];
+
+        for (int i=0; i<n-1; i++)
+        {
+            String roadLine = strScanner.nextLine();
+            String[] strRoad = roadLine.split(" ");
+
+            roads[i][0] = Integer.parseInt(strRoad[0]);
+            roads[i][1] = Integer.parseInt(strRoad[1]);
+        }
+
+        int shortestTime = phoRoutes.shortestTime(phoRestaurants, roads);
+        System.out.println(shortestTime);
+    }
+}
+
+**Routes Class**
+
+package sample;
+import java.util.ArrayList;
+
+public class Routes {
+
+    public int shortestTime(int[] phoRestaurants, int[][] roads)
+    {
+        Roads check = new Roads();
+
+        int shortestTime = 0;
+
+        ArrayList<Integer> visited = new ArrayList<Integer>();
+        int previousPosition = 0;
+        int position = -1;
+
+        for (int i=0; i<phoRestaurants.length; i++)
+        {
+            int amountOfRoads = check.amountOfRoads(roads, phoRestaurants[i]);
+            if (amountOfRoads == 1)
+            {
+                position = phoRestaurants[i];
+                visited.add(position);
+                break;
+            }
+        }
+
+        boolean areConnected;
+        boolean isPhoRestaurant;
+        boolean repeated;
+        boolean notFinished = true;
+        ArrayList<Integer> repeatedList = new ArrayList<Integer>();
+
+        while (notFinished)
+        {
+            for (int i=0; i<roads.length; i++)
+            {
+                for (int j=0; j<2; j++)
+                {
+                    areConnected = check.checkConnection(roads, roads[i][j], position);
+                    isPhoRestaurant = check.isPhoRestaurant(phoRestaurants, roads[i][j]);
+                    repeated = check.repeated(repeatedList, position, roads[i][j]);
+
+                    if ((areConnected) && (isPhoRestaurant) && (!repeated))
+                    {
+                        previousPosition = position;
+                        position = roads[i][j];
+                        repeatedList.add(previousPosition);
+                        repeatedList.add(position);
+                        shortestTime++;
+                        visited.add(position);
+                    }
+
+                    else if ((areConnected) && (!repeated))
+                    {
+                        previousPosition = position;
+                        position = roads[i][j];
+                        shortestTime++;
+                        repeatedList.add(previousPosition);
+                        repeatedList.add(position);
+                    }
+
+                    else if (areConnected)
+                    {
+                        int holder = position;
+                        position = previousPosition;
+                        previousPosition = holder;
+                        shortestTime++;
+                        repeatedList.add(previousPosition);
+                        repeatedList.add(position);
+                    }
+                    if (visited.size() == phoRestaurants.length)
+                    {
+                        notFinished = false;
+                        break;
+                    }
+                }
+            }
+
+
+        }
+
+        return shortestTime;
+    }
+}
+
+**Roads Class**
+
+package sample;
+import java.util.ArrayList;
+
+public class Roads {
+
+    public int amountOfRoads (int[][] roads, int restaurantA)
+    {
+        int amountOfRoads = 0;
+
+        for (int i=0; i<roads.length; i++)
+        {
+            if (restaurantA == roads[i][0] || restaurantA == roads[i][1])
+            {
+                amountOfRoads++;
+            }
+        }
+        return amountOfRoads;
+    }
+
+    public boolean checkConnection (int[][] roads, int restaurantA, int restaurantB)
+    {
+        boolean connected = false;
+
+        for (int i=0; i<roads.length; i++)
+        {
+            if (((roads[i][0] == restaurantA) && (roads[i][1] == restaurantB)) || ((roads[i][0] == restaurantB) && (roads[i][1] == restaurantA)))
+            {
+                connected = true;
+            }
+        }
+
+        return connected;
+    }
+
+    public boolean isPhoRestaurant (int[] phoRestaurant, int restaurantA)
+    {
+        boolean isPhoRestaurant = false;
+
+        for (int i=0; i<phoRestaurant.length; i++)
+        {
+            if (phoRestaurant[i] == restaurantA)
+            {
+                isPhoRestaurant = true;
+            }
+        }
+
+        return isPhoRestaurant;
+    }
+
+    public boolean repeated (ArrayList<Integer> repeatedList, int restaurantA, int restaurantB)
+    {
+        boolean repeated = false;
+
+        for (int i=0; i<repeatedList.size(); i+=2)
+        {
+            if (((repeatedList.get(i) == restaurantA) && (repeatedList.get(i+1) == restaurantB)) || ((repeatedList.get(i) == restaurantB) && (repeatedList.get(i+1) == restaurantA)))
+            {
+                repeated = true;
+            }
+        }
+
+        return repeated;
+    }
+}
+
