@@ -1,0 +1,51 @@
+//CCC Senior Question 1, 2017
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+    Scanner input = new Scanner(System.in);
+    int n;
+    n = input.nextInt();
+    int[] scoreSwifts = new int[n];
+    int[] scoreSemaphores = new int [n];
+
+    for(int i=0; i<n; i++)
+    {
+    scoreSwifts[i] = input.nextInt();
+    }
+    for(int i=0; i<n; i++)
+    {
+    scoreSemaphores[i] = input.nextInt();
+    }
+
+    int totalSwifts = 0;
+    int totalSemaphores = 0;
+    int[] scoreSwiftSums = new int[n];
+    int[] scoreSemaphoreSums = new int[n];
+    for(int i=0; i<n; i++)
+    {
+    totalSwifts += scoreSwifts[i];
+    scoreSwiftSums[i] = totalSwifts;
+    }
+    for(int i=0; i<n; i++)
+    {
+    totalSemaphores += scoreSemaphores[i];
+    scoreSemaphoreSums[i] = totalSemaphores;
+    }
+
+    int currentAnswer = 0;
+    int finalAnswer;
+    for(int i=0; i<n; i++)
+    {
+    if (scoreSwiftSums[i] == scoreSemaphoreSums[i])
+    {
+    currentAnswer = i+1;
+    }
+    }
+
+    System.out.println(currentAnswer);
+    }
+}
