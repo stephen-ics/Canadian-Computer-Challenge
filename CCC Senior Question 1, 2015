@@ -1,0 +1,60 @@
+//CCC Senior Question 1, 2015 
+import java.util.Scanner;
+
+public class Main
+{
+    public static void main(String[] args) {
+
+        Scanner inputInt = new Scanner(System.in);
+
+        int n = inputInt.nextInt();
+        int[] intArray = new int[n];
+        int index;
+
+        for (int i = 0; i < n; i++)
+        {
+            intArray[i] = inputInt.nextInt();
+        }
+
+        int total = 0;
+        int changeable = 1;
+        boolean check = true;
+
+        for (int i = 0; i < n; i++)
+        {
+            if (intArray[i] != 0)
+            {
+
+            }
+            else
+            {
+            index = ReturnArrayPreviousNoZeroValueIndex(intArray, i);
+            intArray[index] = 0;
+            }
+
+        }
+            for (int i = 0; i < n; i++)
+            {
+                total += intArray[i];
+            }
+        System.out.println(total);
+   }
+
+    public static int ReturnArrayPreviousNoZeroValueIndex(int[] intArray, int position)
+    {
+       boolean check = true;
+       int changeable = 0;
+       while(check)
+        {
+            if (intArray[position + changeable] != 0)
+            {
+                check = false;
+            }
+            else
+            {
+                changeable--;
+            }
+        }
+    return position + changeable;
+    }
+}
