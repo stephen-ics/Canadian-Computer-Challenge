@@ -1,0 +1,128 @@
+//CCC Senior Question 3, 2010
+
+**Main Class**
+package sample;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        int H = input.nextInt();
+        int[] addresses = new int[H];
+
+        for (int i=0; i<H; i++)
+        {
+            addresses[i] = input.nextInt();
+        }
+
+        int K = input.nextInt();
+        int[] distances = new int[H];
+        int[][] borders = new int[K][3];
+
+        ArrayList<Distance> distance = new ArrayList<Distance>();
+
+        int x = 0;
+
+        for (int i=0; i<H; i++)
+        {
+            if (i != H-1)
+            {
+                distances[i] = Math.abs(addresses[i] - addresses[i+1]);
+            }
+            else
+            {
+                if (addresses[i] > addresses[0])
+                {
+                    distances[i] = Math.abs(1000000 - addresses[i] + addresses[0]);
+                }
+                else
+                {
+                    distances[i] = Math.abs(addresses[i] - addresses[0]);
+                }
+            }
+
+            if (x < K)
+            {
+                borders[x][0] = distances[i];
+                borders[x][1] = addresses[i];
+                borders[x][2] = addresses[i+1];
+
+                Distance d = new Distance();
+                d.DistanceValue = distances[i];
+                d.Address1 = addresses[i];
+                d.Address2 = addresses[i+1];
+                distance.add(d);
+
+                x++;
+            }
+            else if (distances[i] > borders[0][0])
+            {
+                Arrays.sort(borders, (a,b) -> Integer.compare(a[0], b[0]));
+
+                distance.sort((a,b) -> Integer.compare(a.DistanceValue, b.DistanceValue));
+
+                borders[0][0] = distances[i];
+                borders[0][1] = addresses[i];
+
+                distance.get(0).DistanceValue = distances[i];
+                distance.get(0).Address1 = addresses[i];
+
+                if (i != H-1)
+                {
+                    borders[0][2] = addresses[i+1];
+
+                    distance.get(0).Address2 = addresses[i+1];
+                }
+                else
+                {
+                    borders[0][2] = addresses[0];
+
+                    distance.get(0).Address2 = addresses[0];
+                }
+            }
+        }
+
+        Arrays.sort(borders, (a,b) -> Integer.compare(a[1], b[1]));
+
+        distance.sort((a,b) -> Integer.compare(a.Address1, b.Address1));
+
+
+
+        int[] output = new int[K];
+
+        for (int i=0; i<K; i++)
+        {
+            if (i == K-1)
+            {
+                //output[i] = Math.abs(borders[0][1] - borders[K-1][2]);
+
+                output[i] =  Math.abs(distance.get(0).Address1 - distance.get(K-1).Address2);
+            }
+            else
+            {
+                //output[i] = Math.abs(borders[i][2] - borders[i+1][1]);
+
+                output[i] =  Math.abs(distance.get(i).Address2 - distance.get(i+1).Address1);
+            }
+        }
+
+        Arrays.sort(output);
+
+        System.out.println(output[K-1]/2);
+    }
+}
+
+
+
+**Distance Class**
+package sample;
+
+public class Distance {
+
+    public int DistanceValue;
+    public int Address1;
+    public int Address2;
+}
