@@ -1,0 +1,106 @@
+**Main Class**
+import java.util.*;
+
+public class Main {
+    public static void main(String args[])
+    {
+        Scanner input = new Scanner(System.in);
+        Scanner inputStr = new Scanner(System.in);
+        int t = input.nextInt();
+        maze m = new maze();
+
+        for(int i=0; i<t; i++)
+        {
+            int r = input.nextInt();
+            int c = input.nextInt();
+
+            String[][] mazeArray = new String[r][c];
+            for(int j=0; j<r; j++)
+            {
+                String row = inputStr.nextLine();
+                mazeArray[j] = row.split("");
+            }
+            int output = m.maze(mazeArray);
+            System.out.println(output);
+        }
+    }
+}
+
+**Maze Class**
+
+import java.util.*;
+
+public class maze {
+
+    public class finishPath
+    {
+        public int finishNumber;
+        public ArrayList<Integer> stepsArray = new ArrayList<Integer>();
+    }
+
+    public int maze(String[][] mazeArray)
+    {
+        int output = 0;
+        int steps = 1;
+        finishPath finishes = new finishPath();
+
+        recursion(mazeArray, 0, 0, mazeArray[0].length-1, mazeArray.length-1, finishes, steps);
+
+        Collections.sort(finishes.stepsArray);
+
+        return finishes.stepsArray.get(0);
+    }
+
+    public void recursion(String[][] maze, int row, int column, int finishedRow, int finishedColumn, finishPath finishes, int steps) {
+
+        if ((row == finishedRow) && (column == finishedColumn))
+        {
+            finishes.finishNumber++;
+            finishes.stepsArray.add(steps);
+        }
+
+        else if (maze[column][row].equals("*"))
+        {
+
+        }
+
+        else if ((maze[column][row].equals("|")) && (column < finishedColumn))
+        {
+            int steps2 = steps;
+            column++;
+            steps2++;
+            recursion(maze, row, column, finishedRow, finishedColumn, finishes, steps2);
+        }
+
+        else if ((maze[column][row].equals("-")) && (row < finishedRow))
+        {
+            int steps2 = steps;
+            row++;
+            steps2++;
+            recursion(maze, row, column, finishedRow, finishedColumn, finishes, steps2);
+        }
+
+        else if (maze[column][row].equals("+"))
+        {
+            int constColumn = column;
+
+            if(column < finishedColumn)
+            {
+                int steps2 = steps;
+                column++;
+                steps2++;
+                recursion(maze, row, column, finishedRow, finishedColumn, finishes, steps2);
+            }
+
+            if(row < finishedRow)
+            {
+                int steps2 = steps;
+                row++;
+                steps2++;
+                recursion(maze, row, constColumn, finishedRow, finishedColumn, finishes, steps2);
+            }
+        }
+    }
+}
+
+
